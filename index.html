@@ -65,6 +65,7 @@
         .logo-container img {
             height: 80px;
             width: auto;
+            transition: height 0.3s;
         }
 
         nav ul {
@@ -109,84 +110,6 @@
             stroke: var(--sage-green);
         }
 
-        /* Instagram Feed Section */
-        .ig-feed-section {
-            background-color: #fff;
-            padding: 15px 0 20px;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .ig-feed-header {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .ig-feed-header a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-            color: var(--primary-brown);
-            font-size: 0.95rem;
-        }
-
-        .ig-feed-header a:hover {
-            color: var(--sage-green);
-        }
-
-        .ig-grid {
-            display: flex;
-            gap: 10px;
-            padding: 0 5%;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .ig-grid::-webkit-scrollbar {
-            display: none;
-        }
-
-        .ig-item {
-            flex: 0 0 200px;
-            height: 200px;
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            display: block;
-        }
-
-        .ig-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .ig-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .ig-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            color: white;
-        }
-
-        .ig-item:hover .ig-overlay {
-            opacity: 1;
-        }
-
-        .ig-overlay svg {
-            width: 30px;
-            height: 30px;
-        }
-
         /* Hero Section */
         .hero {
             display: flex;
@@ -197,7 +120,6 @@
             padding: 80px 20px 100px;
             background: linear-gradient(rgba(252, 251, 250, 0.85), rgba(252, 251, 250, 0.85)), 
                         url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-            /* Arch motif starting here */
             border-bottom: 5px solid var(--sage-green);
         }
 
@@ -273,7 +195,6 @@
             margin-bottom: 1rem;
             padding: 1.5rem;
             border-left: 4px solid var(--sage-green);
-            /* Subtle arch echo on cards */
             border-radius: 0 25px 8px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
@@ -299,7 +220,6 @@
             gap: 0;
             align-items: center;
             background-color: #fff;
-            /* Arch shape applied to container */
             border-radius: 60px 15px 15px 60px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -339,7 +259,7 @@
             position: relative;
             max-width: 600px;
             margin: 60px auto 0;
-            padding-bottom: 30px; /* Space for wheels */
+            padding-bottom: 30px;
         }
 
         /* The Chimney */
@@ -352,7 +272,7 @@
             height: 60px;
             background-color: var(--primary-brown);
             border-radius: 4px 4px 0 0;
-            border-top: 10px solid #222; /* Chimney Cap */
+            border-top: 10px solid #222;
             z-index: 0;
         }
 
@@ -379,14 +299,10 @@
             padding: 4rem 3rem 3rem;
             background-color: var(--cream-bg);
             border: 6px solid var(--primary-brown);
-            
-            /* THE WAGON SHAPE: Arched top, flat bottom */
             border-radius: 250px 250px 15px 15px;
             position: relative;
             z-index: 1;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-
-            /* Subtle horizontal wood paneling effect */
             background-image: repeating-linear-gradient(
                 to bottom,
                 transparent,
@@ -433,6 +349,7 @@
             outline: none;
             background: #fff;
             margin-top: 10px;
+            font-size: 1rem;
         }
 
         .booking-card button {
@@ -445,6 +362,7 @@
             font-weight: bold;
             margin-top: 10px;
             transition: background 0.3s;
+            font-size: 1rem;
         }
 
         .booking-card button:hover {
@@ -476,48 +394,96 @@
             color: var(--sage-green);
         }
 
-        /* Responsive Design */
+        /* -------------------------------------
+           MOBILE RESPONSIVE DESIGN (Centered)
+           ------------------------------------- */
         @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            /* Header */
+            header {
+                justify-content: center; /* Center the logo */
+                padding: 1rem;
             }
-            .location-container {
-                grid-template-columns: 1fr;
-                border-radius: 40px 40px 15px 15px;
-            }
-            .location-details {
-                padding: 2rem;
+            .logo-container img {
+                height: 60px; /* Slightly smaller logo for mobile */
             }
             nav ul {
-                display: none;
+                display: none; /* Hide nav links on mobile */
+            }
+
+            /* Sections & Typography */
+            section {
+                padding: 60px 5%;
             }
             .hero h1 {
                 font-size: 2.5rem;
             }
+            .hero h2 {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            /* About Grid Centering */
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .benefits-list li {
+                border-left: none;
+                border-top: 4px solid var(--sage-green); /* Move accent to top */
+                border-radius: 12px; /* Symmetrical border radius */
+                padding: 1.5rem 1rem;
+            }
+
+            /* Location Grid Centering */
+            .location-container {
+                grid-template-columns: 1fr;
+                border-radius: 20px; /* Symmetrical border radius */
+            }
+            .location-details {
+                padding: 3rem 1.5rem;
+                text-align: center;
+            }
             .map-container {
                 min-height: 300px;
             }
-            .ig-item {
-                flex: 0 0 150px;
-                height: 150px;
+
+            /* Wagon Booking Card Adjustments */
+            .booking-section {
+                padding: 60px 15px 100px; /* Adjust padding for mobile */
             }
-            
-            /* Responsive Wagon Shrink */
             .booking-wagon-wrapper {
-                margin-top: 40px;
+                margin: 40px auto 0;
             }
             .booking-card {
-                border-radius: 150px 150px 15px 15px;
+                border-radius: 120px 120px 15px 15px; /* Softer arch for narrow screens */
                 padding: 3rem 1.5rem 2rem;
             }
+            
+            /* Center Form Inputs */
+            .booking-card form {
+                flex-direction: column;
+                align-items: center;
+            }
+            .booking-card input[type="email"] {
+                width: 100%;
+                border-radius: 25px; /* Fully rounded on mobile */
+                text-align: center;
+            }
+            .booking-card button {
+                width: 100%;
+                border-radius: 25px; /* Fully rounded on mobile */
+                margin-top: 15px;
+            }
+
+            /* Adjust Chimney and Wheels for mobile width */
             .booking-wagon-wrapper::before {
-                right: 60px;
+                right: 50px;
                 height: 45px;
                 top: -30px;
             }
             .booking-wagon-wrapper::after {
-                right: 62px;
+                right: 52px;
                 top: -65px;
             }
             .wheel {
@@ -529,14 +495,8 @@
                 width: 14px;
                 height: 14px;
             }
-            .wheel-left { left: 40px; }
-            .wheel-right { right: 40px; }
-            
-            .booking-card input[type="email"], .booking-card button {
-                width: 100%;
-                border-radius: 25px;
-                margin-bottom: 10px;
-            }
+            .wheel-left { left: 30px; }
+            .wheel-right { right: 30px; }
         }
     </style>
 </head>
@@ -563,57 +523,6 @@
             </ul>
         </nav>
     </header>
-
-    <div class="ig-feed-section">
-        <div class="ig-feed-header">
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" rel="noopener noreferrer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-                @la_healthandwellness
-            </a>
-        </div>
-        <div class="ig-grid">
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1515377659633-8221808b2612?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Wellness Image 1">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1610411326442-7a76e01a8848?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sauna Coals">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Stretching">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fitness">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1507652313656-b14eb1300f89?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Nature Retreat">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
-                <img src="https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Relaxation">
-                <div class="ig-overlay">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-            </a>
-        </div>
-    </div>
 
     <section id="home" class="hero">
         <h1>LA Heat</h1>

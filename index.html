@@ -62,7 +62,7 @@
         }
 
         .logo-container img {
-            height: 80px; /* Adjust based on your logo crop */
+            height: 80px;
             width: auto;
         }
 
@@ -70,11 +70,15 @@
             list-style: none;
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
             font-weight: 600;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav a:hover {
@@ -93,6 +97,95 @@
             color: var(--text-light);
         }
 
+        /* Social Icons */
+        .nav-social svg {
+            width: 22px;
+            height: 22px;
+            transition: stroke 0.3s ease;
+        }
+
+        .nav-social:hover svg {
+            stroke: var(--sage-green);
+        }
+
+        /* Instagram Feed Section (Under Header) */
+        .ig-feed-section {
+            background-color: #fff;
+            padding: 15px 0 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .ig-feed-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .ig-feed-header a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: var(--primary-brown);
+            font-size: 0.95rem;
+        }
+
+        .ig-feed-header a:hover {
+            color: var(--sage-green);
+        }
+
+        .ig-grid {
+            display: flex;
+            gap: 10px;
+            padding: 0 5%;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .ig-grid::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .ig-item {
+            flex: 0 0 200px;
+            height: 200px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .ig-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .ig-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .ig-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+        }
+
+        .ig-item:hover .ig-overlay {
+            opacity: 1;
+        }
+
+        .ig-overlay svg {
+            width: 30px;
+            height: 30px;
+        }
+
         /* Hero Section */
         .hero {
             display: flex;
@@ -100,8 +193,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(252, 251, 250, 0.9), rgba(252, 251, 250, 0.9)), 
+            padding: 80px 20px 100px;
+            background: linear-gradient(rgba(252, 251, 250, 0.85), rgba(252, 251, 250, 0.85)), 
                         url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             border-bottom: 5px solid var(--sage-green);
         }
@@ -188,23 +281,49 @@
         }
 
         /* Location Section */
-        .location-box {
+        .location-section {
             background-color: var(--primary-brown);
+            padding: 4rem 10%;
+        }
+        
+        .location-section .section-title {
             color: white;
-            padding: 3rem;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background-color: #fff;
             border-radius: 15px;
-            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .location-box h2, .location-box p {
-            color: white;
+        .location-details {
+            padding: 3rem;
         }
 
-        .location-box h2::after {
-            background-color: var(--sage-green);
+        .location-details h3 {
+            font-size: 2rem;
+            color: var(--sage-green);
+            margin-bottom: 1rem;
         }
 
-        /* Booking Section (Future Scope) */
+        .map-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Booking Section */
         .booking-section {
             background-color: #fff;
             text-align: center;
@@ -247,17 +366,33 @@
             background-color: var(--text-dark);
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-social {
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            color: var(--sage-green);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .grid-2 {
+            .grid-2, .location-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
             nav ul {
-                display: none; /* In a full build, add a hamburger menu here */
+                display: none;
             }
             .hero h1 {
                 font-size: 2.5rem;
@@ -266,6 +401,13 @@
                 width: 100%;
                 border-radius: 25px;
                 margin-bottom: 10px;
+            }
+            .map-container {
+                min-height: 300px;
+            }
+            .ig-item {
+                flex: 0 0 150px;
+                height: 150px;
             }
         }
     </style>
@@ -280,10 +422,71 @@
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#location">Location</a></li>
+                <li>
+                    <a href="https://www.instagram.com/la_healthandwellness" target="_blank" rel="noopener noreferrer" class="nav-social" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </li>
                 <li><a href="#booking" class="btn-nav">Book Now</a></li>
             </ul>
         </nav>
     </header>
+
+    <div class="ig-feed-section">
+        <div class="ig-feed-header">
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                @la_healthandwellness
+            </a>
+        </div>
+        
+        <div class="ig-grid">
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1515377659633-8221808b2612?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Wellness Image 1">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1610411326442-7a76e01a8848?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sauna Coals">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Stretching">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fitness">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1507652313656-b14eb1300f89?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Nature Retreat">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
+                <img src="https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Relaxation">
+                <div class="ig-overlay">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
 
     <section id="home" class="hero">
         <h1>LA Heat</h1>
@@ -320,13 +523,24 @@
         </div>
     </section>
 
-    <section id="location">
-        <div class="location-box">
-            <h2 class="section-title" style="color: white;">Find Us</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Proudly stationed at:</p>
-            <h3 style="font-size: 2rem; color: var(--sage-green); margin-bottom: 1rem;">Heywoods Sports and Fitness</h3>
-            <p>Diss, Norfolk</p>
-            <p style="margin-top: 2rem; opacity: 0.8;">Ample parking and easy access. Perfect for a post-workout recovery session or a dedicated wellness trip.</p>
+    <section id="location" class="location-section">
+        <h2 class="section-title">Find Us</h2>
+        <div class="location-container">
+            <div class="location-details">
+                <p style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #777;">Proudly stationed at:</p>
+                <h3>Heywood Sports & Fitness</h3>
+                <p style="font-size: 1.1rem;">30 Walcot Rd<br>Diss IP22 4DB<br>Norfolk</p>
+                <p style="margin-top: 1.5rem;">Ample parking and easy access. Perfect for a post-workout recovery session or a dedicated wellness trip.</p>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Heywood+Sports+and+Fitness+Diss" target="_blank" style="display: inline-block; margin-top: 1rem; color: var(--sage-green); font-weight: bold; text-decoration: underline;">Get Directions →</a>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9774.20455581335!2d1.1171401!3d52.3805435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9f0f2691c3dbd%3A0x753ef974239f1ed1!2sHeywood%20Sports%20%26%20Fitness!5e0!3m2!1sen!2suk!4v1690000000000!5m2!1sen!2suk" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
     </section>
 
@@ -346,8 +560,18 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 LA Heat Mobile Sauna. All rights reserved.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">Located at Heywoods Sports and Fitness, Diss, Norfolk</p>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/la_healthandwellness" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Follow us on Instagram
+            </a>
+        </div>
+        <p>© 2026 LA Heat Mobile Sauna. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">Located at Heywood Sports & Fitness, Diss, Norfolk</p>
     </footer>
 
 </body>

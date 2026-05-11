@@ -30,6 +30,7 @@
             background-color: var(--cream-bg);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3 {
@@ -108,7 +109,7 @@
             stroke: var(--sage-green);
         }
 
-        /* Instagram Feed Section (Under Header) */
+        /* Instagram Feed Section */
         .ig-feed-section {
             background-color: #fff;
             padding: 15px 0 20px;
@@ -138,11 +139,11 @@
             gap: 10px;
             padding: 0 5%;
             overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
 
         .ig-grid::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
+            display: none;
         }
 
         .ig-item {
@@ -196,6 +197,7 @@
             padding: 80px 20px 100px;
             background: linear-gradient(rgba(252, 251, 250, 0.85), rgba(252, 251, 250, 0.85)), 
                         url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            /* Arch motif starting here */
             border-bottom: 5px solid var(--sage-green);
         }
 
@@ -271,7 +273,8 @@
             margin-bottom: 1rem;
             padding: 1.5rem;
             border-left: 4px solid var(--sage-green);
-            border-radius: 0 8px 8px 0;
+            /* Subtle arch echo on cards */
+            border-radius: 0 25px 8px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
 
@@ -293,16 +296,17 @@
         .location-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 0;
             align-items: center;
             background-color: #fff;
-            border-radius: 15px;
+            /* Arch shape applied to container */
+            border-radius: 60px 15px 15px 60px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .location-details {
-            padding: 3rem;
+            padding: 4rem;
         }
 
         .location-details h3 {
@@ -323,42 +327,129 @@
             border: 0;
         }
 
-        /* Booking Section */
+        /* WAGON THEMED BOOKING SECTION */
         .booking-section {
             background-color: #fff;
             text-align: center;
+            padding-bottom: 120px;
             border-top: 1px solid #eaeaea;
         }
 
-        .booking-card {
+        .booking-wagon-wrapper {
+            position: relative;
             max-width: 600px;
-            margin: 0 auto;
-            padding: 3rem;
-            background: var(--cream-bg);
-            border: 2px dashed var(--tan-accent);
-            border-radius: 15px;
+            margin: 60px auto 0;
+            padding-bottom: 30px; /* Space for wheels */
         }
 
+        /* The Chimney */
+        .booking-wagon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -45px;
+            right: 120px;
+            width: 35px;
+            height: 60px;
+            background-color: var(--primary-brown);
+            border-radius: 4px 4px 0 0;
+            border-top: 10px solid #222; /* Chimney Cap */
+            z-index: 0;
+        }
+
+        /* Smoke effect (pure CSS) */
+        .booking-wagon-wrapper::after {
+            content: '♨';
+            position: absolute;
+            top: -85px;
+            right: 122px;
+            font-size: 30px;
+            color: var(--tan-accent);
+            opacity: 0.6;
+            animation: smokeRise 3s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes smokeRise {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+        }
+
+        /* The Wagon Body */
+        .booking-card {
+            padding: 4rem 3rem 3rem;
+            background-color: var(--cream-bg);
+            border: 6px solid var(--primary-brown);
+            
+            /* THE WAGON SHAPE: Arched top, flat bottom */
+            border-radius: 250px 250px 15px 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+
+            /* Subtle horizontal wood paneling effect */
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 39px,
+                rgba(92, 67, 38, 0.08) 39px,
+                rgba(92, 67, 38, 0.08) 41px
+            );
+        }
+
+        /* The Wheels */
+        .wheel {
+            position: absolute;
+            bottom: 0;
+            width: 70px;
+            height: 70px;
+            background-color: var(--cream-bg);
+            border-radius: 50%;
+            border: 10px solid var(--primary-brown);
+            z-index: 2;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: #222;
+            border-radius: 50%;
+        }
+
+        .wheel-left { left: 80px; }
+        .wheel-right { right: 80px; }
+
+        /* Booking Form Inputs */
         .booking-card input[type="email"] {
             padding: 1rem;
-            width: 70%;
-            border: 1px solid #ccc;
+            width: 65%;
+            border: 2px solid var(--sage-green);
             border-radius: 25px 0 0 25px;
             outline: none;
+            background: #fff;
+            margin-top: 10px;
         }
 
         .booking-card button {
             padding: 1rem 2rem;
             background-color: var(--primary-brown);
             color: white;
-            border: none;
+            border: 2px solid var(--primary-brown);
             border-radius: 0 25px 25px 0;
             cursor: pointer;
             font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s;
         }
 
         .booking-card button:hover {
             background-color: var(--sage-green);
+            border-color: var(--sage-green);
         }
 
         /* Footer */
@@ -387,9 +478,16 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .grid-2, .location-container {
+            .grid-2 {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+            .location-container {
+                grid-template-columns: 1fr;
+                border-radius: 40px 40px 15px 15px;
+            }
+            .location-details {
+                padding: 2rem;
             }
             nav ul {
                 display: none;
@@ -397,17 +495,47 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-            .booking-card input[type="email"], .booking-card button {
-                width: 100%;
-                border-radius: 25px;
-                margin-bottom: 10px;
-            }
             .map-container {
                 min-height: 300px;
             }
             .ig-item {
                 flex: 0 0 150px;
                 height: 150px;
+            }
+            
+            /* Responsive Wagon Shrink */
+            .booking-wagon-wrapper {
+                margin-top: 40px;
+            }
+            .booking-card {
+                border-radius: 150px 150px 15px 15px;
+                padding: 3rem 1.5rem 2rem;
+            }
+            .booking-wagon-wrapper::before {
+                right: 60px;
+                height: 45px;
+                top: -30px;
+            }
+            .booking-wagon-wrapper::after {
+                right: 62px;
+                top: -65px;
+            }
+            .wheel {
+                width: 50px;
+                height: 50px;
+                border-width: 8px;
+            }
+            .wheel::after {
+                width: 14px;
+                height: 14px;
+            }
+            .wheel-left { left: 40px; }
+            .wheel-right { right: 40px; }
+            
+            .booking-card input[type="email"], .booking-card button {
+                width: 100%;
+                border-radius: 25px;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -447,7 +575,6 @@
                 @la_healthandwellness
             </a>
         </div>
-        
         <div class="ig-grid">
             <a href="https://www.instagram.com/la_healthandwellness" target="_blank" class="ig-item">
                 <img src="https://images.unsplash.com/photo-1515377659633-8221808b2612?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Wellness Image 1">
@@ -546,17 +673,22 @@
 
     <section id="booking" class="booking-section">
         <h2 class="section-title">Book Your Session</h2>
-        <div class="booking-card">
-            <h3 style="margin-bottom: 15px;">Online Booking Launching Soon!</h3>
-            <p style="margin-bottom: 25px;">We are currently finalizing our digital booking system. Enter your email below to be notified the moment we open our calendar for reservations.</p>
-            <form action="#" onsubmit="alert('Thank you! You have been added to the waitlist.'); return false;" style="display: flex; justify-content: center; flex-wrap: wrap;">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Notify Me</button>
-            </form>
-            <p style="margin-top: 20px; font-size: 0.9rem;">
-                <em>Future updates will embed a seamless calendar booking system right here.</em>
-            </p>
+        
+        <div class="booking-wagon-wrapper">
+            <div class="booking-card">
+                <h3 style="margin-bottom: 15px; font-size: 1.8rem; position: relative; z-index: 2;">Step Inside.</h3>
+                <p style="margin-bottom: 25px; position: relative; z-index: 2;">We are currently finalizing our digital booking system. Enter your email below to be notified the moment we open our calendar for reservations.</p>
+                
+                <form action="#" onsubmit="alert('Thank you! You have been added to the waitlist.'); return false;" style="display: flex; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2;">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Notify Me</button>
+                </form>
+            </div>
+            
+            <div class="wheel wheel-left"></div>
+            <div class="wheel wheel-right"></div>
         </div>
+        
     </section>
 
     <footer>

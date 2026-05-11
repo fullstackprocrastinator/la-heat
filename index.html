@@ -186,22 +186,100 @@
             align-items: center;
         }
 
-        .benefits-list {
-            list-style: none;
-        }
-
-        .benefits-list li {
+        .about-text {
             background: #fff;
-            margin-bottom: 1rem;
-            padding: 1.5rem;
-            border-left: 4px solid var(--sage-green);
-            border-radius: 0 25px 8px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .benefits-list h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+        .about-text:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        /* Interactive Tabs Widget */
+        .interactive-widget {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tab-controls {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #999;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--sage-green);
+            background: rgba(137, 158, 130, 0.1);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-brown);
+            background: rgba(198, 167, 133, 0.2);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-brown);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content-wrapper {
+            position: relative;
+            min-height: 200px; /* Prevents layout shifting */
+        }
+
+        .tab-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.4s ease-in-out;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--sage-green);
+        }
+
+        .tab-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        .tab-panel h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
         }
 
         /* Location Section */
@@ -262,7 +340,6 @@
             padding-bottom: 30px;
         }
 
-        /* The Chimney */
         .booking-wagon-wrapper::before {
             content: '';
             position: absolute;
@@ -276,7 +353,6 @@
             z-index: 0;
         }
 
-        /* Smoke effect (pure CSS) */
         .booking-wagon-wrapper::after {
             content: '♨';
             position: absolute;
@@ -294,7 +370,6 @@
             100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
         }
 
-        /* The Wagon Body */
         .booking-card {
             padding: 4rem 3rem 3rem;
             background-color: var(--cream-bg);
@@ -312,7 +387,6 @@
             );
         }
 
-        /* The Wheels */
         .wheel {
             position: absolute;
             bottom: 0;
@@ -340,7 +414,6 @@
         .wheel-left { left: 80px; }
         .wheel-right { right: 80px; }
 
-        /* Booking Form Inputs */
         .booking-card input[type="email"] {
             padding: 1rem;
             width: 65%;
@@ -400,14 +473,14 @@
         @media (max-width: 768px) {
             /* Header */
             header {
-                justify-content: center; /* Center the logo */
+                justify-content: center;
                 padding: 1rem;
             }
             .logo-container img {
-                height: 60px; /* Slightly smaller logo for mobile */
+                height: 60px;
             }
             nav ul {
-                display: none; /* Hide nav links on mobile */
+                display: none;
             }
 
             /* Sections & Typography */
@@ -422,23 +495,44 @@
                 letter-spacing: 2px;
             }
 
-            /* About Grid Centering */
+            /* About Grid Centering & Tabs */
             .grid-2 {
                 grid-template-columns: 1fr;
                 gap: 2rem;
                 text-align: center;
             }
-            .benefits-list li {
+            .about-text {
+                padding: 1.5rem;
+            }
+            
+            /* Center Tab Controls */
+            .tab-controls {
+                justify-content: center;
+                border-bottom: none;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .tab-btn.active::after {
+                display: none; /* Hide underline on mobile */
+            }
+            .tab-btn.active {
+                background-color: var(--primary-brown);
+                color: white;
+            }
+            .tab-panel {
                 border-left: none;
-                border-top: 4px solid var(--sage-green); /* Move accent to top */
-                border-radius: 12px; /* Symmetrical border radius */
-                padding: 1.5rem 1rem;
+                border-top: 5px solid var(--sage-green);
+                padding: 1.5rem;
+                text-align: center;
+            }
+            .tab-panel h3 {
+                justify-content: center;
             }
 
             /* Location Grid Centering */
             .location-container {
                 grid-template-columns: 1fr;
-                border-radius: 20px; /* Symmetrical border radius */
+                border-radius: 20px;
             }
             .location-details {
                 padding: 3rem 1.5rem;
@@ -450,13 +544,13 @@
 
             /* Wagon Booking Card Adjustments */
             .booking-section {
-                padding: 60px 15px 100px; /* Adjust padding for mobile */
+                padding: 60px 15px 100px;
             }
             .booking-wagon-wrapper {
                 margin: 40px auto 0;
             }
             .booking-card {
-                border-radius: 120px 120px 15px 15px; /* Softer arch for narrow screens */
+                border-radius: 120px 120px 15px 15px;
                 padding: 3rem 1.5rem 2rem;
             }
             
@@ -467,12 +561,12 @@
             }
             .booking-card input[type="email"] {
                 width: 100%;
-                border-radius: 25px; /* Fully rounded on mobile */
+                border-radius: 25px;
                 text-align: center;
             }
             .booking-card button {
                 width: 100%;
-                border-radius: 25px; /* Fully rounded on mobile */
+                border-radius: 25px;
                 margin-top: 15px;
             }
 
@@ -504,7 +598,7 @@
 
     <header>
         <div class="logo-container">
-            <a href="#home"><img src="laheat_logo.png" alt="LA Heat Mobile Sauna Logo"></a>
+            <a href="#home"><img src="logo.png" alt="LA Heat Mobile Sauna Logo"></a>
         </div>
         <nav>
             <ul>
@@ -536,25 +630,44 @@
     <section id="about">
         <h2 class="section-title">The LA Heat Experience</h2>
         <div class="grid-2">
-            <div>
+            <div class="about-text">
+                <h3 style="font-size: 1.6rem; color: var(--sage-green);">Tradition Meets Modern Wellness</h3>
                 <p>Welcome to <strong>LA Heat</strong>, a premium mobile sauna experience housed in a beautifully crafted, traditional-style wagon hut. We bring the timeless tradition of heat therapy to the modern world, offering a unique sanctuary for your physical and mental well-being.</p>
                 <p>Whether you're looking to soothe aching muscles after a heavy workout or simply want a quiet escape from the daily grind, our wood-fired sauna provides the perfect environment to disconnect and recharge.</p>
             </div>
-            <div>
-                <ul class="benefits-list">
-                    <li>
-                        <h3>Recover</h3>
-                        <p>Heat therapy increases blood flow, helping to flush lactic acid from muscles and accelerating post-workout recovery.</p>
-                    </li>
-                    <li>
-                        <h3>Relax</h3>
-                        <p>Step away from screens and stress. The gentle crackle of the fire and the enveloping heat melt away tension.</p>
-                    </li>
-                    <li>
-                        <h3>Unwind</h3>
-                        <p>Regular sauna use is linked to better sleep, improved cardiovascular health, and a profound sense of mental clarity.</p>
-                    </li>
-                </ul>
+            
+            <div class="interactive-widget">
+                <div class="tab-controls">
+                    <button class="tab-btn active" data-tab="tab-recover">Recover</button>
+                    <button class="tab-btn" data-tab="tab-relax">Relax</button>
+                    <button class="tab-btn" data-tab="tab-unwind">Unwind</button>
+                </div>
+                
+                <div class="tab-content-wrapper">
+                    <div id="tab-recover" class="tab-panel active">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            Accelerated Recovery
+                        </h3>
+                        <p>Heat therapy significantly increases blood flow. This accelerated circulation helps flush lactic acid and toxins from overworked muscles, speeding up your physical recovery time after intense training sessions.</p>
+                    </div>
+                    
+                    <div id="tab-relax" class="tab-panel">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                            Deep Relaxation
+                        </h3>
+                        <p>Step away from screens and everyday stress. The gentle crackle of the wood fire, the smell of cedar, and the enveloping, deep heat melt away physical and mental tension almost immediately.</p>
+                    </div>
+                    
+                    <div id="tab-unwind" class="tab-panel">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            Mental Reset
+                        </h3>
+                        <p>Regular sauna use is clinically linked to better sleep quality, improved cardiovascular health, and a profound sense of mental clarity. It's not just a physical reset, but a mental one.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -615,5 +728,26 @@
         <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">Located at Heywood Sports & Fitness, Diss, Norfolk</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and panels
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabPanels.forEach(p => p.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    // Show corresponding panel
+                    const targetId = btn.getAttribute('data-tab');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
